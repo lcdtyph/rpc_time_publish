@@ -6,8 +6,6 @@ find_package(Protobuf REQUIRED)
 
 find_file(GRPC_PLUGIN_PATH grpc_cpp_plugin)
 
-message(${GRPC_PLUGIN_PATH})
-
 set(PROTO_SRC "${CMAKE_CURRENT_SOURCE_DIR}/time_publish.proto")
 set(PROTO_OUTPUT_PATH "${CMAKE_CURRENT_BINARY_DIR}/gen")
 file(MAKE_DIRECTORY "${PROTO_OUTPUT_PATH}")
@@ -16,7 +14,6 @@ foreach(mid "pb" "grpc.pb")
     list(APPEND PROTO_OUTPUT_HEADER "${PROTO_OUTPUT_PATH}/time_publish.${mid}.h")
     list(APPEND PROTO_OUTPUT_SOURCE "${PROTO_OUTPUT_PATH}/time_publish.${mid}.cc")
 endforeach()
-message("${PROTO_OUTPUT_HEADER}")
 
 add_custom_command(
     OUTPUT  ${PROTO_OUTPUT_HEADER}
