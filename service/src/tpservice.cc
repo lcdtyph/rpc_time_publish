@@ -60,7 +60,7 @@ private:
                 tv.tv_sec = request_.sec();
                 tv.tv_nsec = request_.nsec();
                 ret = clock_settime(CLOCK_REALTIME, &tv);
-                if (!ret) {
+                if (ret) {
                     LOG(ERROR) << "Set time error, errno: " << errno;
                     if (ret == EPERM) {
                         reply_.set_error("Permission Error");

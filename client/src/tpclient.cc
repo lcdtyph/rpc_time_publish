@@ -26,7 +26,7 @@ public:
 
         struct timespec tv;
         int ret = clock_gettime(CLOCK_REALTIME, &tv);
-        if (!ret) {
+        if (ret) {
             LOG(ERROR) << "Failed to get time: " << errno;
             return false;
         }
