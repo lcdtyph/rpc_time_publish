@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package timesync;
+
+service Publisher {
+    rpc PublishTime (PublishTimeRequest) returns (PublishTimeReply) {}
+}
+
+message PublishTimeRequest {
+    int64 sec = 1;
+    int64 nsec = 2;
+}
+
+message PublishTimeReply {
+    bool success = 1;
+    string error = 2;
+}
+

@@ -1,0 +1,8 @@
+*.[oa]
+*.sw[po]
+*.pb.h
+*.pb.cc
+
+build/
+CMakeFiles/
+
