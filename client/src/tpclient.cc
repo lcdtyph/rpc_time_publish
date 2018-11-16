@@ -63,7 +63,9 @@ int main(int argc, char *argv[]) {
             auto client = static_cast<TimePublishClient *>(w->data);
             if (!client->PublishTime()) {
                 LOG(ERROR) << "Publish failed";
+                return;
             }
+            LOG(INFO) << "Publish succeeded";
         },
         0., FLAGS_interval
     );
