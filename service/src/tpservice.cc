@@ -61,14 +61,18 @@ private:
                 tv.tv_nsec = request_.nsec();
                 ret = clock_settime(CLOCK_REALTIME, &tv);
                 if (ret) {
+                    reply_.set_success(false);
                     LOG(ERROR) << "Set time error, errno: " << errno;
-                    if (ret == EPERM) {
+                    if (errno == EPERM) {
                         reply_.set_error("Permission Error");
                     } else {
                         reply_.set_error("Error number: " + std::to_string(ret));
                     }
+                } else {
+                    reply_.set_success(true);
+                    reply_.set_error("OK");
+                    LOG(INFO) << "Set time succeeded";
                 }
-                reply_.set_success(ret == 0);
                 responder_.Finish(reply_, grpc::Status::OK, this);
                 status_ = FINISH;
                 break;
