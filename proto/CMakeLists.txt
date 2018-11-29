@@ -30,7 +30,6 @@ add_custom_command(
     )
 
 list(APPEND DEPS grpc++_unsecure grpc_unsecure ${PROTOBUF_LIBRARY})
-include_directories(${PROTO_OUTPUT_PATH})
 
 add_library(${PROJECT_NAME}_objs OBJECT ${PROTO_OUTPUT_SOURCE})
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC ${DEPS})
